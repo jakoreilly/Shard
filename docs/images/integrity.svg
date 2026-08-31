@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" width="900" height="250" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#93a1b3"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#52d18b"/></marker>
+  </defs>
+
+  <rect width="900" height="250" rx="14" fill="#0e1116"/>
+
+  <text x="24" y="34" fill="#93a1b3" font-size="11.5" font-weight="600" letter-spacing=".07em">RESTORE — WHAT IS CHECKED, BEFORE A SINGLE BYTE REACHES THE DESTINATION</text>
+
+  <rect x="24" y="52" width="150" height="70" rx="9" fill="#161b23" stroke="#2a323f"/>
+  <text x="38" y="74" fill="#93a1b3" font-size="10">manifest parses,</text>
+  <text x="38" y="89" fill="#93a1b3" font-size="10">joining .001/.002…</text>
+  <text x="38" y="104" fill="#93a1b3" font-size="10">if it was split</text>
+
+  <rect x="198" y="52" width="150" height="70" rx="9" fill="#161b23" stroke="#2a323f"/>
+  <text x="212" y="74" fill="#93a1b3" font-size="10">formatVersion is</text>
+  <text x="212" y="89" fill="#93a1b3" font-size="10">one this build</text>
+  <text x="212" y="104" fill="#93a1b3" font-size="10">understands</text>
+
+  <rect x="372" y="52" width="150" height="70" rx="9" fill="#161b23" stroke="#2a323f"/>
+  <text x="386" y="74" fill="#93a1b3" font-size="10">projectName and</text>
+  <text x="386" y="89" fill="#93a1b3" font-size="10">every entry path:</text>
+  <text x="386" y="104" fill="#93a1b3" font-size="10">no traversal, no zip-slip</text>
+
+  <rect x="546" y="52" width="150" height="70" rx="9" fill="#161b23" stroke="#2a323f"/>
+  <text x="560" y="74" fill="#93a1b3" font-size="10">every shard's</text>
+  <text x="560" y="89" fill="#93a1b3" font-size="10">SHA-256 matches</text>
+  <text x="560" y="104" fill="#93a1b3" font-size="10">the manifest</text>
+
+  <rect x="720" y="52" width="156" height="70" rx="9" fill="#161b23" stroke="#52d18b" stroke-opacity=".4"/>
+  <text x="734" y="74" fill="#93a1b3" font-size="10">extract, re-join,</text>
+  <text x="734" y="89" fill="#93a1b3" font-size="10">then every restored</text>
+  <text x="734" y="104" fill="#52d18b" font-size="10">file's SHA-256 matches</text>
+
+  <path d="M174 87 L196 87" stroke="#93a1b3" stroke-width="1.6" marker-end="url(#m)"/>
+  <path d="M348 87 L370 87" stroke="#93a1b3" stroke-width="1.6" marker-end="url(#m)"/>
+  <path d="M522 87 L544 87" stroke="#93a1b3" stroke-width="1.6" marker-end="url(#m)"/>
+  <path d="M696 87 L718 87" stroke="#52d18b" stroke-width="1.6" marker-end="url(#g)"/>
+
+  <text x="24" y="164" fill="#93a1b3" font-size="10.5">A missing shard, a corrupted shard, a zip-slip path, an unknown formatVersion, or a hostile projectName all fail here.</text>
+  <text x="24" y="180" fill="#93a1b3" font-size="10.5">Nothing is written to the destination unless the whole package checks out. -VerifyOnly runs everything up to the extract and stops.</text>
+
+  <text x="24" y="216" fill="#5b6878" font-size="10">Preserved: file bytes · relative paths · empty directories · last-write time (UTC) · ReadOnly / Hidden.</text>
+  <text x="24" y="230" fill="#5b6878" font-size="10">Not preserved: ACLs / permissions · alternate data streams · other attributes (Compressed, Encrypted, …).</text>
+</svg>

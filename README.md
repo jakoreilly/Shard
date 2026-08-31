@@ -1,14 +1,27 @@
-# shard — split a project into shards, reforge it exactly
+<div align="center">
 
-Pure PowerShell scripts to split a project folder into many small `.zip`
-shards (default cap 500 KB, configurable) with an integrity manifest, and
-later reassemble the exact original tree from just those shards — no other
-knowledge of the original project required.
+# Shard
 
-No external dependencies. Files larger than the shard cap are split into
-byte-range chunks spread across shards and re-joined on restore, so the cap
-is a hard guarantee: no shard (or manifest part) is ever larger than the cap
-you specify.
+**Split a project into small shards. Reforge it byte-for-byte.**
+
+Two pure-PowerShell scripts: one splits a project folder into many small `.zip` shards (default
+cap 500 KB, configurable) with an integrity manifest; the other reassembles the exact original
+tree from just those shards — nothing else about the project required.
+
+No external dependencies. Files larger than the shard cap are split into byte-range chunks spread
+across shards and re-joined on restore, so the cap is a hard guarantee: no shard, and no manifest
+part, is ever larger than the size you specify.
+
+[![PowerShell](https://img.shields.io/badge/PowerShell-5.1%20%2F%207-5eb3ff?style=flat-square)](#testing)
+[![dependencies](https://img.shields.io/badge/dependencies-0-52d18b?style=flat-square)](#testing)
+[![integrity](https://img.shields.io/badge/restore-byte--for--byte-52d18b?style=flat-square)](#restore--what-is-checked)
+[![license](https://img.shields.io/badge/license-MIT-93a1b3?style=flat-square)](LICENSE)
+
+<img src="docs/images/pipeline.svg" alt="Shard pipeline: Invoke-ShardPack filters a source tree by default excludes, then per file either zips it into a shard or chunks it into byte ranges spread across shards, writing shardNNNN.zip files (each an independent valid zip, none over the cap) plus a manifest.zip with relative paths and per-file and per-shard SHA-256; Invoke-ShardRestore verifies every shard hash, extracts and re-joins, verifies every restored file hash, and prints RESTORE OK" width="100%">
+
+</div>
+
+---
 
 ## Usage
 
@@ -75,6 +88,10 @@ Restore always verifies every shard's hash before extracting anything, and
 every restored file's hash afterward — a `RESTORE OK` line means the
 reassembled tree is byte-for-byte identical to the original.
 
+## Restore — what is checked
+
+<img src="docs/images/integrity.svg" alt="Restore verification order: the manifest parses (joining split parts), formatVersion is understood, projectName and every entry path are checked for traversal and zip-slip, every shard's SHA-256 matches the manifest, then after extraction every restored file's SHA-256 matches; a missing or corrupted shard, a zip-slip path, an unknown formatVersion or a hostile projectName all fail before anything is written; -VerifyOnly runs everything up to the extract" width="100%">
+
 ## Limitations
 
 | Limitation | Detail |
@@ -119,3 +136,9 @@ Prints `RESULT: PASS` and exits 0 on success.
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+<sub>A shard is a piece you could cut yourself on, or fit back exactly. These are the second kind.</sub>
+</div>

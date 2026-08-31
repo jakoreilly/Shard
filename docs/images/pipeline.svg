@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" width="900" height="440" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5eb3ff"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#52d18b"/></marker>
+  </defs>
+
+  <rect width="900" height="440" rx="14" fill="#0e1116"/>
+
+  <!-- PACK -->
+  <text x="24" y="34" fill="#93a1b3" font-size="11.5" font-weight="600" letter-spacing=".08em">Invoke-ShardPack</text>
+
+  <rect x="24" y="48" width="150" height="86" rx="12" fill="#161b23" stroke="#2a323f"/>
+  <text x="40" y="72" fill="#e6edf3" font-size="12.5" font-weight="650">source tree</text>
+  <text x="40" y="92" fill="#93a1b3" font-size="10">nested folders, empty</text>
+  <text x="40" y="106" fill="#93a1b3" font-size="10">dirs, attributes, mtime</text>
+  <text x="40" y="124" fill="#5b6878" font-size="9.5">a folder — nothing else</text>
+
+  <rect x="206" y="48" width="176" height="120" rx="12" fill="#161b23" stroke="#2a323f"/>
+  <text x="220" y="70" fill="#e6edf3" font-size="12" font-weight="650">filter</text>
+  <text x="220" y="88" fill="#93a1b3" font-size="9.5">bin · obj · .git · node_modules</text>
+  <text x="220" y="101" fill="#93a1b3" font-size="9.5">.vs · dist · packages · *.user</text>
+  <text x="220" y="119" fill="#5b6878" font-size="9.5">-Exclude adds to these</text>
+  <text x="220" y="132" fill="#5b6878" font-size="9.5">-NoDefaultExcludes packs all</text>
+  <text x="220" y="152" fill="#5b6878" font-size="9.5">the patterns go in the manifest</text>
+
+  <rect x="414" y="40" width="200" height="140" rx="12" fill="#161b23" stroke="#5eb3ff" stroke-opacity=".4"/>
+  <text x="428" y="62" fill="#e6edf3" font-size="12" font-weight="650">per file</text>
+  <text x="428" y="82" fill="#93a1b3" font-size="10">fits the cap →</text>
+  <text x="428" y="96" fill="#93a1b3" font-size="10">one entry in a shard</text>
+  <text x="428" y="118" fill="#93a1b3" font-size="10">bigger than the cap →</text>
+  <text x="428" y="132" fill="#93a1b3" font-size="10">byte-range chunks, spread</text>
+  <text x="428" y="146" fill="#93a1b3" font-size="10">across shards, re-joined</text>
+  <text x="428" y="160" fill="#93a1b3" font-size="10">on restore</text>
+  <text x="428" y="176" fill="#52d18b" font-size="9.5">so the cap is a hard guarantee</text>
+
+  <!-- outputs -->
+  <rect x="648" y="40" width="228" height="86" rx="12" fill="#161b23" stroke="#2a323f"/>
+  <text x="662" y="62" fill="#e6edf3" font-size="11.5" font-weight="650" font-family="ui-monospace, monospace">MyProject.shard0001.zip …</text>
+  <text x="662" y="80" fill="#93a1b3" font-size="9.5">each an independent, valid .zip</text>
+  <text x="662" y="94" fill="#93a1b3" font-size="9.5">none larger than -MaxShardSizeKB</text>
+  <text x="662" y="112" fill="#5b6878" font-size="9.5">open one in Explorer if you want</text>
+
+  <rect x="648" y="138" width="228" height="90" rx="12" fill="#161b23" stroke="#2a323f"/>
+  <text x="662" y="160" fill="#e6edf3" font-size="11.5" font-weight="650" font-family="ui-monospace, monospace">MyProject.manifest.zip</text>
+  <text x="662" y="178" fill="#93a1b3" font-size="9.5">relative paths · per-file SHA-256</text>
+  <text x="662" y="191" fill="#93a1b3" font-size="9.5">per-shard SHA-256 · exclude patterns</text>
+  <text x="662" y="204" fill="#93a1b3" font-size="9.5">formatVersion</text>
+  <text x="662" y="220" fill="#5b6878" font-size="9.5">splits to .001, .002… if it exceeds the cap</text>
+
+  <!-- RESTORE -->
+  <text x="24" y="268" fill="#93a1b3" font-size="11.5" font-weight="600" letter-spacing=".08em">Invoke-ShardRestore</text>
+
+  <rect x="24" y="282" width="852" height="108" rx="12" fill="#12171f" stroke="#2a323f"/>
+  <rect x="40" y="300" width="180" height="74" rx="9" fill="#161b23" stroke="#2a323f"/>
+  <text x="54" y="322" fill="#93a1b3" font-size="10.5">verify every shard's</text>
+  <text x="54" y="337" fill="#93a1b3" font-size="10.5">SHA-256 against the</text>
+  <text x="54" y="352" fill="#93a1b3" font-size="10.5">manifest</text>
+  <rect x="248" y="300" width="180" height="74" rx="9" fill="#161b23" stroke="#2a323f"/>
+  <text x="262" y="322" fill="#93a1b3" font-size="10.5">extract entries,</text>
+  <text x="262" y="337" fill="#93a1b3" font-size="10.5">re-join chunked</text>
+  <text x="262" y="352" fill="#93a1b3" font-size="10.5">files, rebuild the tree</text>
+  <rect x="456" y="300" width="196" height="74" rx="9" fill="#161b23" stroke="#2a323f"/>
+  <text x="470" y="322" fill="#93a1b3" font-size="10.5">verify every restored</text>
+  <text x="470" y="337" fill="#93a1b3" font-size="10.5">file's SHA-256, and</text>
+  <text x="470" y="352" fill="#93a1b3" font-size="10.5">restore attributes + mtime</text>
+  <rect x="680" y="300" width="180" height="74" rx="9" fill="#161b23" stroke="#52d18b" stroke-opacity=".5"/>
+  <text x="694" y="326" fill="#52d18b" font-size="12" font-weight="650">RESTORE OK</text>
+  <text x="694" y="345" fill="#5b6878" font-size="9.5">byte-for-byte identical</text>
+  <text x="694" y="358" fill="#5b6878" font-size="9.5">to the original</text>
+
+  <!-- arrows -->
+  <path d="M174 91 L202 100" stroke="#5eb3ff" stroke-width="2" marker-end="url(#b)"/>
+  <path d="M382 108 L410 110" stroke="#5eb3ff" stroke-width="2" marker-end="url(#b)"/>
+  <path d="M614 100 L644 90" stroke="#5eb3ff" stroke-width="2" marker-end="url(#b)"/>
+  <path d="M614 120 L644 175" stroke="#5eb3ff" stroke-width="2" marker-end="url(#b)"/>
+  <path d="M220 337 L246 337" stroke="#93a1b3" stroke-width="1.6" marker-end="url(#b)"/>
+  <path d="M428 337 L454 337" stroke="#93a1b3" stroke-width="1.6" marker-end="url(#b)"/>
+  <path d="M652 337 L678 337" stroke="#52d18b" stroke-width="1.6" marker-end="url(#g)"/>
+
+  <text x="24" y="418" fill="#93a1b3" font-size="10.5">Pure PowerShell, no dependencies. Runs on Windows PowerShell 5.1 and PowerShell 7. Nothing but the shards is needed to restore.</text>
+</svg>
